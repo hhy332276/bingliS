@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2e102bf3-80bb-4d93-89d1-cb89d175d144" name="111.230.185.250" url="http://111.230.185.250">
+        <fileTransfer host="111.230.185.250" port="22" rootFolder="/home/hhy/bingliS" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
