@@ -1,0 +1,89 @@
+{%  extends 'manager_base.html' %}
+{% load i18n %}
+{% block head %}
+    <!-- nurse_index CSS -->
+    <link href="/static/bingli/css/nurse_index.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+           <div class="white-box table-responsive">
+            <h4 class="box-title ">
+                <span class="zitileft">{% trans "操作记录" %}</span>
+                <span class="zitiright"><i class="fa fa-edit zitoaw"></i><a href="/manager/audit_list/1/" >{% trans "返回上层" %}</a></span>
+            </h4>
+                <div class="row ">
+                     <div class="col-sm-12 ">
+                         <!-- Page Content -->
+                        <div class="container-fluid hidden_table" >
+                            <table class="table table-border table-bordered table-hover table-bg table-sort" >
+                                <thead>
+                                    <tr>
+                                        <th width="100" class="text-center" style="white-space: nowrap;"><strong>{% trans "患者名" %}</strong></th>
+                                        <th width="100" class="text-center" style="white-space: nowrap;"><strong>{% trans "字段名" %}</strong></th>
+                                        <th width="100" class="text-center" style="white-space: nowrap;"><strong>{% trans "字段值" %}</strong></th>
+                                        <th width="100" class="text-center" style="white-space: nowrap;"><strong>{% trans "字段变更时间" %}</strong></th>
+                                    </tr>
+                                </thead>
+                         
+                                <tbody id='tebles'>
+                                {%for editRecord_obj in editRecord_obj_list%}
+                                    <tr>
+                                        <td style="display: none">{{ editRecord_obj.id }}</td>
+                                        <td style="white-space: nowrap;">{{editRecord_obj.person.name}}</td>
+                                        <td style="white-space: nowrap;">{{editRecord_obj.col_name}}</td>
+                                        <td style="white-space: nowrap;">{{editRecord_obj.col_value}}</td>
+                                        <td style="white-space: nowrap;">{{editRecord_obj.create_time|date:"Y-m-j  H:i:s" }}</td>
+                                    </tr>      
+                                {% endfor %}
+                                </tbody>
+                             
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+<div class="ctfenye">
+    <div class="col-sm-6 zitileft eawtwwwq">
+          <div class="dataTables_info" id="editable-datatable_info" role="status" aria-live="polite">
+              <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">{% trans "总" %}：{{pages_count}}{% trans "页" %},{% trans "有" %}{{page_count}}{% trans "数据" %}</font>
+              </font>
+          </div>
+         </div>
+         <div class="col-sm-6 zitiright eawt">
+          <div class="dataTables_paginate paging_simple_numbers " id="editable-datatable_paginate">
+                <ul class="pagination">
+                   <li class="paginate_button previous " aria-controls="editable-datatable" tabindex="0" id="editable-datatable_previous">
+                        <a href="/manager/audit/audit_action_log/{{ account_id }}/1/">{% trans "首页" %}</a>
+                   </li>
+                   <li class="paginate_button previous " aria-controls="editable-datatable" tabindex="0" id="editable-datatable_previous">
+                       <a href="/manager/audit/audit_action_log/{{ account_id }}/{{page_map.prev}}/">{% trans "上一页" %}</a>
+                   </li>
+                   {%for pindex in page_map.pages %}
+                        {%if pindex == page_map.this_page%}
+                        <li class="paginate_button active" aria-controls="editable-datatable" tabindex="0" id="editable-datatable_previous">
+                            <a href="#" class="active" >{{page_map.this_page}}</a>
+                        </li>
+                        {%else%}
+                        <li class="paginate_button " aria-controls="editable-datatable" tabindex="0" id="editable-datatable_previous">
+                            <a href="/manager/audit/audit_action_log/{{ account_id }}/{{pindex}}/">{{pindex}}</a>
+                        </li>
+                        {%endif%}
+                   {%endfor%}
+                   <li class="paginate_button previous " aria-controls="editable-datatable" tabindex="0" id="editable-datatable_previous">
+                       <a href="/manager/audit/audit_action_log/{{ account_id }}/{{page_map.next}}/">{% trans "下一页" %}</a>
+                   </li>
+                   <li class="paginate_button previous " aria-controls="editable-datatable" tabindex="0" id="editable-datatable_previous">
+                       <a href="/manager/audit/audit_action_log/{{ account_id }}/{{pages_count}}/">{% trans "末页" %}</a>
+                   </li>
+              </ul>   
+         </div>
+    </div>
+</div>
+{% endblock %}
+{% block ContentScript %}
+<script>
+</script>
+{% endblock %}
+       
